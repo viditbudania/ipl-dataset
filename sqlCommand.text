@@ -1,0 +1,6 @@
+use ipl;
+select season ,count(distinct id) from matches group by season 
+select season,winner,count(winner) from matches group by season,winner order by season asc;
+select bowling_team, sum(extra_runs) from matches right join deliveries on id=match_id where season=2016 group by bowling_team;
+select bowler, 6*sum(total_runs)/count(if(wide_runs=0 AND noball_runs=0,ball,NULL)) as rate from matches right join deliveries on id=match_id where season=2015 group by bowler order by rate asc limit 10;
+select batsman, sum(batsman_runs) as run from deliveries right join matches on id=match_id where season=2015 group by batsman order by run desc limit 1;
